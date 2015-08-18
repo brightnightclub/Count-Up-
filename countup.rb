@@ -1,7 +1,7 @@
 puts "Please enter numbers separated by commas:"
 numbers = gets.chomp
 numbers = numbers.split(',').map { |n| n.to_i }
-puts "Please enter your target number:"
+puts "Please enter your target number under 10,000:"
 target = gets.chomp.to_i
 
 
@@ -13,16 +13,17 @@ def countup(num_array, target)
   total_iterations = 0
 
   while true
+
     output = ""
     total_iterations += 1
     current_operation = array_of_operations.sample
     right_value = num_array.sample
 
 
-
     output = "#{left_value} #{current_operation} #{right_value} ="
 
-    # ensure that only whole-number division happens
+    # get number close to zero
+
     if current_operation == "/" && left_value % right_value != 0
       output = "#{left_value} % #{right_value} ="
       left_value = left_value % right_value
