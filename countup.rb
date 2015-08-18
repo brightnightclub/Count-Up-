@@ -18,11 +18,20 @@ def countup(num_array, target)
     current_operation = array_of_operations.sample
     right_value = num_array.sample
 
+
+
     output = "#{left_value} #{current_operation} #{right_value} ="
 
+    # ensure that only whole-number division happens
+    if current_operation == "/" && left_value % right_value != 0
+      output = "#{left_value} % #{right_value} ="
+      left_value = left_value % right_value
+
     # avoid dividing by 0
-    if right_value != 0
+    elsif right_value != 0
       left_value = left_value.send(current_operation, right_value)
+
+    # and just add if divide by 0 was gonna happen
     else
       left_value += right_value
     end
