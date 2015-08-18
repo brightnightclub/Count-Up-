@@ -9,17 +9,27 @@ target = gets.chomp.to_i
 
 def countup(num_array, target)
   array_of_operations = ["+","-","/","*"]
-  current_num = num_array.sample
+  left_value = num_array.sample
+  total_iterations = 0
 
-  until current_num == target
+  while true
+    output = ""
+    total_iterations += 1
     current_operation = array_of_operations.sample
-    if current_num != 0
-      current_num = num_array.sample.send(current_operation, current_num)
+    right_value = num_array.sample
+
+    output = "#{left_value} #{current_operation} #{right_value} ="
+
+    # avoid dividing by 0
+    if right_value != 0
+      left_value = left_value.send(current_operation, right_value)
     else
-      current_num += num_array.sample
+      left_value += right_value
     end
-    puts current_num
-    return true if current_num == target
+
+    puts "#{output} #{left_value}"
+
+    return total_iterations if left_value == target
   end
 
 end
