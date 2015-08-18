@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative 'count_up'
+
+puts "Choose a target number: "
+input_number = STDIN.gets.to_i
+
+puts "Choose input numbers (separated by commas):"
+usable_numbers = STDIN.gets.split(',').map &:to_i
+
+STDOUT.puts CountUp.generate_solutions(input_number, usable_numbers)
